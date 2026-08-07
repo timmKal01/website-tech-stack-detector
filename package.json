@@ -1,0 +1,16 @@
+{
+    "name": "website-tech-stack-detector",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Detect a website's CMS, ecommerce platform, JS framework, analytics/tag managers, CDN/hosting, and payment/chat widgets.",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "apify": "^3.2.6",
+        "crawlee": "^3.11.5"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "title": "Website Tech Stack Detector Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Website URLs",
+            "type": "array",
+            "editor": "requestListSources",
+            "description": "Website URLs to analyze (homepage is checked, not the whole site).",
+            "prefill": [
+                { "url": "https://apify.com" }
+            ]
+        }
+    },
+    "required": ["startUrls"]
+}

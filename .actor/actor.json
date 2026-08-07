@@ -1,0 +1,12 @@
+{
+    "actorSpecification": 1,
+    "name": "website-tech-stack-detector",
+    "title": "Website Tech Stack Detector - CMS, Analytics & Hosting Finder",
+    "description": "Given a website URL, detect its CMS, ecommerce platform, JS framework, analytics/tag managers, CDN/hosting, and payment/chat widgets from response headers, meta tags, and script signatures.",
+    "version": "0.1",
+    "meta": {
+        "templateId": "custom-no-proxy"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile"
+}
