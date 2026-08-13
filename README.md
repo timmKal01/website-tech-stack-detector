@@ -64,3 +64,8 @@ Add an entry to the `SIGNATURES` array in `src/signatures.js`: a `name`, a
 `context` has `headers` (lowercased keys/values), `html` (lowercased full
 source), `scriptSrcs` (lowercased `<script src>` values), and `generator`
 (lowercased meta generator content, or `''`).
+
+## Related products
+
+- [Website Lead Extractor](https://github.com/timmKal01/website-lead-extractor) — contact info from the same site, for outreach once you know what they're running
+- [Company Buying Signal Report](https://github.com/timmKal01/company-buying-signal-report) — combine tech stack with hiring activity for a scored buying signal
