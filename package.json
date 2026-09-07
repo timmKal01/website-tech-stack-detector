@@ -10,7 +10,11 @@
         "apify": "^3.2.6",
         "crawlee": "^3.11.5"
     },
+    "devDependencies": {
+        "cheerio": "^1.0.0-rc.12"
+    },
     "scripts": {
-        "start": "node src/main.js"
+        "start": "node src/main.js",
+        "test": "node --test test/**/*.test.js"
     }
 }

@@ -65,6 +65,30 @@ Add an entry to the `SIGNATURES` array in `src/signatures.js`: a `name`, a
 source), `scriptSrcs` (lowercased `<script src>` values), and `generator`
 (lowercased meta generator content, or `''`).
 
+Run `npm test` before committing a signature change — `test/signatures.test.js`
+runs `detectTechStack()` against a small fixture corpus
+(`test/fixtures/*.html`: WordPress, Shopify, Next.js-on-Vercel, and a generic
+site behind Cloudflare) so a tweak to one signature can't silently change
+what an earlier one detects.
+
+## Known limitations
+
+Detection is signature-based (domain strings, header names, meta tags), so
+it produces false negatives, not false positives, when the underlying
+fingerprint isn't publicly visible:
+
+- **Multi-tenant/generic-CDN sites**: hosting (`cdnHosting`) is detected
+  independently from CMS/framework, so a Next.js app on Vercel correctly
+  gets both. But a site built on an unnamed or private platform with no
+  public generator tag and no recognizable script domain only returns its
+  hosting signal — see the Cloudflare fixture in the test suite.
+- **Self-hosted/proxied vendor JS**: analytics/chat/payment detection
+  matches known vendor domains in `<script src>`. A site proxying, say,
+  Segment or GA through its own domain (common for dodging ad blockers or
+  via server-side tagging) won't match, since there's no vendor domain
+  string to find. A headless browser doesn't fully solve this either, since
+  the request still targets the site's own domain either way.
+
 ## Related products
 
 - [Website Lead Extractor](https://github.com/timmKal01/website-lead-extractor) — contact info from the same site, for outreach once you know what they're running
