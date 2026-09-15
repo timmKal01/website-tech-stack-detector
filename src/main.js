@@ -5,7 +5,7 @@ import { detectTechStack } from './signatures.js';
 await Actor.init();
 
 const input = (await Actor.getInput()) ?? {};
-const { startUrls = [] } = input;
+const { startUrls = [{ url: 'https://apify.com' }] } = input;
 
 if (startUrls.length === 0) {
     throw new Error('No startUrls provided.');

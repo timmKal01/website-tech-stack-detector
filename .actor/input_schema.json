@@ -12,6 +12,5 @@
                 { "url": "https://apify.com" }
             ]
         }
-    },
-    "required": ["startUrls"]
+    }
 }
