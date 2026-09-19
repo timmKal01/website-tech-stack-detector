@@ -1,0 +1,12 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of Website Tech Stack Detector - CMS, Analytics & Hosting Finder",
+    "description": "Results are pushed to the default dataset, one record per item.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Results",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
