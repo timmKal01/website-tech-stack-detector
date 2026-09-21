@@ -89,6 +89,12 @@ fingerprint isn't publicly visible:
   string to find. A headless browser doesn't fully solve this either, since
   the request still targets the site's own domain either way.
 
+## Pricing note
+
+Billed per **URL analyzed**, not per signal detected — one charge per page
+whose CMS, framework, analytics, hosting, and payment/chat fingerprints are
+resolved, whether that turns up two matches or none.
+
 ## Related products
 
 - [Website Lead Extractor](https://github.com/timmKal01/website-lead-extractor) — contact info from the same site, for outreach once you know what they're running
