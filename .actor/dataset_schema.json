@@ -1,0 +1,78 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "finalUrl",
+                    "cms",
+                    "ecommerce",
+                    "jsFrameworks",
+                    "analytics",
+                    "cdnHosting",
+                    "payment",
+                    "liveChat",
+                    "server",
+                    "poweredBy",
+                    "generator"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "URL",
+                        "format": "link"
+                    },
+                    "finalUrl": {
+                        "label": "Final URL",
+                        "format": "link"
+                    },
+                    "cms": {
+                        "label": "CMS",
+                        "format": "array"
+                    },
+                    "ecommerce": {
+                        "label": "Ecommerce",
+                        "format": "array"
+                    },
+                    "jsFrameworks": {
+                        "label": "JS frameworks",
+                        "format": "array"
+                    },
+                    "analytics": {
+                        "label": "Analytics",
+                        "format": "array"
+                    },
+                    "cdnHosting": {
+                        "label": "CDN hosting",
+                        "format": "array"
+                    },
+                    "payment": {
+                        "label": "Payment",
+                        "format": "array"
+                    },
+                    "liveChat": {
+                        "label": "Live chat",
+                        "format": "array"
+                    },
+                    "server": {
+                        "label": "Server",
+                        "format": "text"
+                    },
+                    "poweredBy": {
+                        "label": "Powered by",
+                        "format": "text"
+                    },
+                    "generator": {
+                        "label": "Generator",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}
