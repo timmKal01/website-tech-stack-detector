@@ -1,6 +1,6 @@
 import { Actor, log } from 'apify';
 import { CheerioCrawler } from 'crawlee';
-import { detectTechStack } from './signatures.js';
+import { detectTechStack } from 'tech-stack-signatures';
 
 await Actor.init();
 

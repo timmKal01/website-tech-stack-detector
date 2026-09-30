@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
-import { detectTechStack } from '../src/signatures.js';
+import { detectTechStack } from 'tech-stack-signatures';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
