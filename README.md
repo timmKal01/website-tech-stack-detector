@@ -97,5 +97,5 @@ resolved, whether that turns up two matches or none.
 
 ## Related products
 
-- [Website Lead Extractor](https://github.com/timmKal01/website-lead-extractor) — contact info from the same site, for outreach once you know what they're running
-- [Company Buying Signal Report](https://github.com/timmKal01/company-buying-signal-report) — combine tech stack with hiring activity for a scored buying signal
+- [Website Email & Phone Extractor for Lead Gen](https://apify.com/m_ctim/website-lead-extractor): contact info from the same site, for outreach once you know what they're running
+- [Company Buying Signals](https://apify.com/m_ctim/company-buying-signal-report): combine tech stack with hiring activity for a scored buying signal
