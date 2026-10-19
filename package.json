@@ -9,9 +9,7 @@
     "dependencies": {
         "apify": "^3.2.6",
         "crawlee": "^3.11.5",
-        "tech-stack-signatures": "https://github.com/timmKal01/tech-stack-signatures/archive/refs/tags/v1.0.0.tar.gz"
-    },
-    "devDependencies": {
+        "tech-stack-signatures": "https://github.com/timmKal01/tech-stack-signatures/archive/refs/tags/v1.0.0.tar.gz",
         "cheerio": "^1.0.0-rc.12"
     },
     "scripts": {

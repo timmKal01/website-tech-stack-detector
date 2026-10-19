@@ -8,6 +8,8 @@
                 "fields": [
                     "url",
                     "finalUrl",
+                    "status",
+                    "error",
                     "cms",
                     "ecommerce",
                     "jsFrameworks",
@@ -30,6 +32,14 @@
                     "finalUrl": {
                         "label": "Final URL",
                         "format": "link"
+                    },
+                    "status": {
+                        "label": "Status",
+                        "format": "text"
+                    },
+                    "error": {
+                        "label": "Error (not charged)",
+                        "format": "text"
                     },
                     "cms": {
                         "label": "CMS",

@@ -7,9 +7,28 @@
             "title": "Website URLs",
             "type": "array",
             "editor": "requestListSources",
-            "description": "Website URLs to analyze (homepage is checked, not the whole site).",
+            "description": "Website URLs to analyze (the homepage is checked, not the whole site). Every URL gets a row: status \"ok\" with what was found, or \"error\" with the reason. Only \"ok\" rows are charged.",
             "prefill": [
-                { "url": "https://apify.com" }
+                {
+                    "url": "https://www.brooklinen.com"
+                },
+                {
+                    "url": "https://techcrunch.com"
+                },
+                {
+                    "url": "https://www.notion.com"
+                }
+            ],
+            "default": [
+                {
+                    "url": "https://www.brooklinen.com"
+                },
+                {
+                    "url": "https://techcrunch.com"
+                },
+                {
+                    "url": "https://www.notion.com"
+                }
             ]
         }
     }
