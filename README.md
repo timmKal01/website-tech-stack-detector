@@ -1,101 +1,99 @@
-# Website Tech Stack Detector — CMS, Analytics & Hosting Finder
+# Website Tech Stack Detector: CMS, Hosting & Analytics
 
-Give it a website. It fetches the homepage and identifies what's running it:
-CMS, ecommerce platform, JS framework, analytics/tag managers, CDN/hosting
-provider, payment widgets, and live chat widgets — from response headers,
-meta tags, and script signatures. No headless browser, no proxy.
+For sales teams, agencies and developers who need to know what a list of websites is built on: one row per URL with its CMS, ecommerce platform, framework, analytics, hosting, payment and chat tools.
 
-Built for sales/competitive research (what platform is this prospect on?),
-agencies doing tech audits, and market research (who's using Shopify vs.
-WooCommerce in a given list of sites).
+## What you get
+
+- `cms`, `ecommerce` and `jsFrameworks`: for example WordPress, Shopify or Next.js
+- `analytics`, `payment` and `liveChat`: for example Google Analytics, Stripe or Intercom
+- `cdnHosting` (for example Cloudflare or Vercel), plus the raw `server`, `poweredBy` and `generator` values the site reports, which can include the exact WordPress version
+- `status` and `error` on every row: `"ok"`, or `"error"` with the reason a site couldn't be checked, so you always know which URLs failed and why
+
+## Example output
+
+Real output from a run on Apify (2026-10-19):
+
+```json
+{
+  "url": "https://www.brooklinen.com/",
+  "finalUrl": "https://www.brooklinen.com/",
+  "status": "ok",
+  "error": null,
+  "cms": [],
+  "ecommerce": ["Shopify"],
+  "jsFrameworks": [],
+  "analytics": ["Google Analytics"],
+  "cdnHosting": ["Cloudflare"],
+  "payment": [],
+  "liveChat": [],
+  "server": "cloudflare",
+  "poweredBy": null,
+  "generator": null,
+  "analyzedAt": "2026-10-19T03:40:53.782Z"
+}
+```
+
+In the same run, techcrunch.com came back as WordPress on Cloudflare with `"generator": "wordpress 6.9.10"`, and notion.com as Next.js on Vercel and Cloudflare. A domain that doesn't exist came back like this, and wasn't charged:
+
+```json
+{
+  "url": "https://this-domain-does-not-exist-xyz123.com/",
+  "finalUrl": null,
+  "status": "error",
+  "error": "The domain doesn't resolve (DNS lookup failed)."
+}
+```
+
+(The empty technology fields are left out of this second example.)
+
+## What it costs
+
+$0.007 per site analyzed on the Free plan, and less on paid Apify plans ($0.0065 Bronze, $0.006 Silver, $0.0055 Gold and above). Nothing else is billed.
+
+- 100 sites checked = $0.70
+- 1,000 sites checked = $7.00
+
+Only rows with `"status": "ok"` are charged. A URL that can't be checked gets an `"error"` row with the reason and costs nothing. A URL listed twice is checked, and charged, once.
+
+## Use cases
+
+- Before a sales call, find which leads run Shopify, WordPress or HubSpot.
+- Before quoting a redesign or migration, check a prospect's CMS and hosting.
+- Count how many sites in a list use a given analytics, payment or chat tool.
 
 ## Input
 
 | Field | Type | Description |
 |---|---|---|
-| `startUrls` | array of URLs | Websites to analyze (homepage only, not a crawl). |
+| `startUrls` | array of URLs | The websites to check. Only the homepage of each is checked, not the whole site. If you leave it empty, it checks brooklinen.com, techcrunch.com and notion.com. |
 
 ```json
 {
-  "startUrls": [{ "url": "https://example.com" }]
+  "startUrls": [
+    { "url": "https://www.brooklinen.com" },
+    { "url": "https://techcrunch.com" },
+    { "url": "https://www.notion.com" }
+  ]
 }
 ```
 
-## Output
+## Related tools
 
-One record per URL:
+- [Tech Stack Lead Finder](https://apify.com/m_ctim/tech-stack-lead-finder): find sites that use a technology, for example Shopify stores without Klaviyo, across 120+ technologies
+- [Website Email & Phone Extractor](https://apify.com/m_ctim/website-lead-extractor): get the contact details of the sites you want to pitch
+- [Website Gap Finder](https://apify.com/m_ctim/website-gap-finder): audit local businesses' websites and find the ones that need a new site
 
-```json
-{
-  "url": "https://example.com",
-  "finalUrl": "https://example.com/",
-  "cms": ["WordPress"],
-  "ecommerce": ["WooCommerce"],
-  "jsFrameworks": ["jQuery"],
-  "analytics": ["Google Analytics", "Google Tag Manager"],
-  "cdnHosting": ["Cloudflare"],
-  "payment": ["Stripe"],
-  "liveChat": ["Intercom"],
-  "server": "cloudflare",
-  "poweredBy": "PHP/8.2",
-  "generator": "WordPress 6.7"
-}
-```
+## Notes
 
-## How it works
-
-Plain HTTP fetch via [Crawlee](https://crawlee.dev)'s `CheerioCrawler`.
-Detection is signature-based (`src/signatures.js`): checks the `generator`
-meta tag, `<script src>` domains, response headers (`Server`,
-`X-Powered-By`, `CF-Ray`, `X-Vercel-Id`, etc.), and a few HTML body markers
-per technology. Same approach tools like Wappalyzer use, with a smaller,
-hand-written signature set (~30 technologies across 7 categories) rather
-than a comprehensive database — it'll correctly return "nothing detected"
-for a signature it doesn't have rather than guessing.
-
-Only reads what the site already serves publicly to any visitor's browser —
-no login, no evasion of any protection.
-
-## Adding a signature
-
-Add an entry to the `SIGNATURES` array in `src/signatures.js`: a `name`, a
-`category` (one of `cms`, `ecommerce`, `jsFrameworks`, `analytics`,
-`cdnHosting`, `payment`, `liveChat`), and a `test(context)` function where
-`context` has `headers` (lowercased keys/values), `html` (lowercased full
-source), `scriptSrcs` (lowercased `<script src>` values), and `generator`
-(lowercased meta generator content, or `''`).
-
-Run `npm test` before committing a signature change — `test/signatures.test.js`
-runs `detectTechStack()` against a small fixture corpus
-(`test/fixtures/*.html`: WordPress, Shopify, Next.js-on-Vercel, and a generic
-site behind Cloudflare) so a tweak to one signature can't silently change
-what an earlier one detects.
-
-## Known limitations
-
-Detection is signature-based (domain strings, header names, meta tags), so
-it produces false negatives, not false positives, when the underlying
-fingerprint isn't publicly visible:
-
-- **Multi-tenant/generic-CDN sites**: hosting (`cdnHosting`) is detected
-  independently from CMS/framework, so a Next.js app on Vercel correctly
-  gets both. But a site built on an unnamed or private platform with no
-  public generator tag and no recognizable script domain only returns its
-  hosting signal — see the Cloudflare fixture in the test suite.
-- **Self-hosted/proxied vendor JS**: analytics/chat/payment detection
-  matches known vendor domains in `<script src>`. A site proxying, say,
-  Segment or GA through its own domain (common for dodging ad blockers or
-  via server-side tagging) won't match, since there's no vendor domain
-  string to find. A headless browser doesn't fully solve this either, since
-  the request still targets the site's own domain either way.
-
-## Pricing note
-
-Billed per **URL analyzed**, not per signal detected — one charge per page
-whose CMS, framework, analytics, hosting, and payment/chat fingerprints are
-resolved, whether that turns up two matches or none.
-
-## Related products
-
-- [Website Email & Phone Extractor for Lead Gen](https://apify.com/m_ctim/website-lead-extractor): contact info from the same site, for outreach once you know what they're running
-- [Company Buying Signals](https://apify.com/m_ctim/company-buying-signal-report): combine tech stack with hiring activity for a scored buying signal
+- **What it recognises:** 36 technologies.
+  - CMS: WordPress, Drupal, Joomla, Wix, Squarespace, Webflow, Ghost, HubSpot CMS
+  - Ecommerce: Shopify, WooCommerce, Magento, BigCommerce
+  - Frameworks: Next.js, Nuxt, React, Vue.js, Angular, jQuery
+  - Analytics: Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, Segment, Mixpanel, HubSpot Analytics
+  - Hosting and CDN: Cloudflare, Vercel, Netlify, AWS CloudFront, Fastly, GitHub Pages
+  - Payment: Stripe, PayPal
+  - Chat: Intercom, Drift, Zendesk Chat
+- **How it checks:** it reads the homepage's HTML and response headers from one plain HTTP request, with no browser. Tools that load later through JavaScript or a tag manager can be missed. For example, stripe.com shows only Next.js and an nginx server.
+- **When a site blocks it:** sites that refuse automated requests come back as `"error"` with the HTTP status (for example 403), uncharged.
+- **Freshness:** every run checks the live site. Nothing is cached.
+- **Feedback and support:** open an issue in the Issues tab on this page. Missing technologies you'd like detected are welcome there too.

@@ -1,8 +1,8 @@
 {
     "actorSpecification": 1,
     "name": "website-tech-stack-detector",
-    "title": "Website Tech Stack Checker: CMS & Analytics",
-    "description": "Given a website URL, detect its CMS, ecommerce platform, JS framework, analytics/tag managers, CDN/hosting, and payment/chat widgets from response headers, meta tags, and script signatures.",
+    "title": "Website Tech Stack Detector: CMS, Hosting & Analytics",
+    "description": "Enter website URLs and get each site's tech stack in one row: CMS, ecommerce platform, JS framework, analytics, CDN/hosting, payment and chat tools, plus server headers.",
     "version": "0.1",
     "meta": {
         "templateId": "custom-no-proxy"
