@@ -15,6 +15,7 @@ Real output from a run on Apify (2026-10-19):
 
 ```json
 {
+  "rowType": "site",
   "url": "https://www.brooklinen.com/",
   "finalUrl": "https://www.brooklinen.com/",
   "status": "ok",
@@ -37,6 +38,7 @@ In the same run, techcrunch.com came back as WordPress on Cloudflare with `"gene
 
 ```json
 {
+  "rowType": "error",
   "url": "https://this-domain-does-not-exist-xyz123.com/",
   "finalUrl": null,
   "status": "error",

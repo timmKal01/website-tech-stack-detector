@@ -19,7 +19,7 @@ const given = Array.isArray(input.startUrls) ? input.startUrls : [];
 const rawUrls = (given.length ? given : DEFAULT_URLS).map((u) => (typeof u === 'string' ? u : u?.url));
 
 function row(url, finalUrl, status, error, { detected, server, poweredBy, generator } = EMPTY) {
-    return { url, finalUrl, status, error, ...detected, server, poweredBy, generator, analyzedAt: new Date().toISOString() };
+    return { rowType: status === 'ok' ? 'site' : 'error', url, finalUrl, status, error, ...detected, server, poweredBy, generator, analyzedAt: new Date().toISOString() };
 }
 
 /** "brooklinen.com" -> "https://brooklinen.com". Returns null for anything that isn't an http(s) web address. */
