@@ -1,4 +1,4 @@
-# Website Tech Stack Detector: CMS, Hosting & Analytics
+# Website Tech Stack Detector: Wappalyzer Alternative
 
 For sales teams, agencies and developers who need to know what a list of websites is built on: one row per URL with its CMS, ecommerce platform, framework, analytics, hosting, payment and chat tools.
 

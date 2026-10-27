@@ -1,7 +1,7 @@
 {
     "actorSpecification": 1,
     "name": "website-tech-stack-detector",
-    "title": "Website Tech Stack Detector: CMS, Hosting & Analytics",
+    "title": "Website Tech Stack Detector: Wappalyzer Alternative",
     "description": "Enter website URLs and get each site's tech stack in one row: CMS, ecommerce platform, JS framework, analytics, CDN/hosting, payment and chat tools, plus server headers.",
     "version": "0.1",
     "meta": {
