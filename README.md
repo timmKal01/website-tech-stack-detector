@@ -82,7 +82,7 @@ Only rows with `"status": "ok"` are charged. A URL that can't be checked gets an
 ## Related tools
 
 - [Tech Stack Lead Finder](https://apify.com/m_ctim/tech-stack-lead-finder): find sites that use a technology, for example Shopify stores without Klaviyo, across 120+ technologies
-- [Website Email & Phone Extractor](https://apify.com/m_ctim/website-lead-extractor): get the contact details of the sites you want to pitch
+- [Website Gap Finder](https://apify.com/m_ctim/website-gap-finder): get the contact details of the sites you want to pitch, from a list of websites or a Google Maps search
 - [Website Gap Finder](https://apify.com/m_ctim/website-gap-finder): audit local businesses' websites and find the ones that need a new site
 
 ## Notes
